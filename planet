@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+module intel
+module load mpi
+OP='--with-problem=planet-disk --enable-shearing-box --with-gas=hydro --with-eos=isothermal --with-flux=roe' 
+VISC=' -enable-viscosity' 
+MPI=' --enable-mpi'
+GHOST=' --enable-ghost'
+
+if [ $# -ne 0 ]; then
+	if [ $1 == '-v' ]; then 
+		OP=$OP$VISC
+	elif [ $1 == '-m' ]; then
+		OP=$OP$MPI
+	elif [ $1 == '-vm' ]; then 
+		OP=$OP$MPI$VISC
+	elif [ $1 == '-vg' ]; then
+		OP=$OP$VISC$GHOST
+	elif [ $1 == '-g' ]; then 
+		OP=$OP$GHOST
+	elif [ $1 == '-mg' ]; then 
+		OP=$OP$MPI$GHOST
+	elif [ $1 == '-vmg' ]; then 
+		OP=$OP$MPI$VISC$GHOST	
+	fi	
+fi
+
+make clean
+./configure $OP 
+make all
+cd bin

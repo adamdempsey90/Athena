@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+
+
+
+if [ $# -eq 0 ]; then
+
+	./athena -i athinput.new
+else
+
+	mpirun -np $1 ./athena -i athinput.new domain1/AutoWithNProc=$1
+
+	if [ $1 -ne 1 ]; then
+		cp id0/*.hst .
+		echo 'coalescing vtk files...'
+		./joinvtk $1
+#		./joinothervtk $1 'Lflux'
+	echo 'combining tab files...'
+	./jointab $1 'flux'
+##	./joinprimtab $1 
+		rm -r id*/
+	else
+		mv id0/* .
+		rm -r id0/
+	fi
+fi

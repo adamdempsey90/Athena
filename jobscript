@@ -1,0 +1,66 @@
+#!/bin/bash
+
+START=$(date +'%s')
+
+echo
+echo
+echo
+echo "Starting..."
+
+. planet -v
+
+echo
+echo
+echo
+#echo "Starting 256,0.001"
+#./athena -i athinput.new problem/nu_iso=0.001 > f.out
+#mkdir 256_q3_nu001
+#mv *.tab *.hst *.bin *.vtk f.out 256_q3_nu001/
+
+#echo "Starting 256,0.01"
+#./athena -i athinput.new problem/nu_iso=0.01 > f.out
+#mkdir 256_q3_nu01
+#mv *.tab *.hst *.bin *.vtk f.out 256_q3_nu01/
+
+
+#cp athinput.new lowres.new
+#mv hires.new athinput.new
+
+echo "Starting 512,0.001"
+./athena -i athinput.new problem/nu_iso=0.001 > f.out
+mkdir 512_q3_nu001
+mv *.tab *.hst *.bin *.vtk f.out 512_q3_nu001/
+
+echo "Starting 512,0.01"
+./athena -i athinput.new problem/nu_iso=0.01 > f.out
+mkdir 512_q3_nu01
+mv *.tab *.hst *.bin *.vtk f.out 512_q3_nu01/
+
+echo "Starting 512,0.1"
+./athena -i athinput.new problem/nu_iso=0.1 > f.out
+mkdir 512_q3_nu1
+mv *.tab *.hst *.bin *.vtk f.out 512_q3_nu1/
+
+echo "Recompiling"
+cd ..
+. planet 
+
+echo
+echo
+echo
+echo "Starting 512,0.0"
+./athena -i athinput.new problem/nu_iso=0.0 > f.out
+mkdir 512_q3_nu0
+mv *.tab *.hst *.bin *.vtk f.out 512_q3_nu0/
+
+
+END=$(date+'%s')
+DT=$((END-START))
+echo "Total time: ${DT} seconds"
+echo "Total time: $((DT/60.0)) minutes"
+echo "Total time: $((DT/3600.0)) hours"
+
+
+
+
+

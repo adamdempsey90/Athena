@@ -1,0 +1,386 @@
+
+
+
+Starting...
+(cd src/fftsrc; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/gravity; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/integrators; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/microphysics; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/particles; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/reconstruction; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/rsolvers; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o Makedepend ../bin/athena
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking whether gcc needs -traditional... no
+checking for strdup... yes
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating Makeoptions
+config.status: creating src/Makefile
+config.status: creating src/defs.h
+config.status: creating src/fftsrc/Makefile
+config.status: creating src/gravity/Makefile
+config.status: creating src/integrators/Makefile
+config.status: creating src/microphysics/Makefile
+config.status: creating src/reconstruction/Makefile
+config.status: creating src/rsolvers/Makefile
+config.status: creating src/particles/Makefile
+config.status: creating src/config.h
+config.status: src/config.h is unchanged
+
+Your Athena distribution has now been configured:
+
+--- Physics Options ---
+
+Problem:                 planet-disk
+Gas properties:          HYDRO
+Equation of State:       ISOTHERMAL
+Coordinate System:       CARTESIAN
+Advected scalar fields:  0
+Self-gravity:            OFF
+Resistivity:             OFF
+Viscosity:               ON
+Thermal conduction:      OFF
+Particles:               OFF
+Special Relativity:      OFF
+
+--- Algorithm Options ----
+
+Spatial Order:           3 (THIRD_ORDER_CHAR)
+Flux:                    roe
+unsplit integrator:      ctu
+Precision:               DOUBLE_PREC
+Compiler options:        -O3
+Ghost cell output:       OFF
+Parallel modes: MPI      OFF
+H-correction:            OFF
+FFT:                     OFF
+Shearing-box:            ON
+FARGO:                   OFF
+Super timestepping:      OFF
+Static Mesh Refinement:  OFF
+first-order flux corr:   OFF
+ROTATING_FRAME:          OFF
+L1_INFLOW:               OFF
+DIR bin exists
+(cd src/gravity; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    bvals_grav.c selfg.c selfg_fft.c selfg_fft_disk.c selfg_fft_obc.c selfg_multigrid.c > Makedepend
+gcc -O3    -c bvals_grav.c
+gcc -O3    -c selfg.c
+gcc -O3    -c selfg_fft.c
+gcc -O3    -c selfg_fft_disk.c
+gcc -O3    -c selfg_fft_obc.c
+gcc -O3    -c selfg_multigrid.c
+(cd src/integrators; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    integrate.c integrate_1d_ctu.c integrate_2d_ctu.c integrate_3d_ctu.c integrate_1d_vl.c integrate_2d_vl.c integrate_3d_vl.c integrate_1d_vl_sr.c integrate_2d_vl_sr.c integrate_3d_vl_sr.c > Makedepend
+gcc -O3    -c integrate.c
+gcc -O3    -c integrate_1d_ctu.c
+gcc -O3    -c integrate_2d_ctu.c
+gcc -O3    -c integrate_3d_ctu.c
+gcc -O3    -c integrate_1d_vl.c
+gcc -O3    -c integrate_2d_vl.c
+gcc -O3    -c integrate_3d_vl.c
+gcc -O3    -c integrate_1d_vl_sr.c
+gcc -O3    -c integrate_2d_vl_sr.c
+gcc -O3    -c integrate_3d_vl_sr.c
+(cd src/microphysics; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    conduction.c cool.c integrate_diffusion.c get_eta.c new_dt_diff.c resistivity.c viscosity.c > Makedepend
+gcc -O3    -c conduction.c
+gcc -O3    -c cool.c
+gcc -O3    -c integrate_diffusion.c
+gcc -O3    -c get_eta.c
+gcc -O3    -c new_dt_diff.c
+gcc -O3    -c resistivity.c
+gcc -O3    -c viscosity.c
+(cd src/particles; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    bvals_particle.c dump_particle_history.c exchange.c init_particle.c integrators_particle.c output_particle.c utils_particle.c > Makedepend
+gcc -O3    -c bvals_particle.c
+gcc -O3    -c dump_particle_history.c
+gcc -O3    -c exchange.c
+gcc -O3    -c init_particle.c
+gcc -O3    -c integrators_particle.c
+gcc -O3    -c output_particle.c
+gcc -O3    -c utils_particle.c
+(cd src/reconstruction; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    esystem_prim.c lr_states_dc.c lr_states_plm.c lr_states_ppm.c lr_states_prim2.c lr_states_prim3.c > Makedepend
+gcc -O3    -c esystem_prim.c
+gcc -O3    -c lr_states_dc.c
+gcc -O3    -c lr_states_plm.c
+gcc -O3    -c lr_states_ppm.c
+gcc -O3    -c lr_states_prim2.c
+gcc -O3    -c lr_states_prim3.c
+(cd src/rsolvers; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    esystem_roe.c exact.c exact_sr.c force.c hllc.c hlld.c hllc_sr.c hlle_sr.c hlld_sr.c hlle.c roe.c two_shock.c > Makedepend
+gcc -O3    -c esystem_roe.c
+gcc -O3    -c exact.c
+gcc -O3    -c exact_sr.c
+gcc -O3    -c force.c
+gcc -O3    -c hllc.c
+gcc -O3    -c hlld.c
+gcc -O3    -c hllc_sr.c
+gcc -O3    -c hlle_sr.c
+gcc -O3    -c hlld_sr.c
+gcc -O3    -c hlle.c
+gcc -O3    -c roe.c
+gcc -O3    -c two_shock.c
+(cd src; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    ath_array.c ath_files.c ath_log.c ath_signal.c baton.c bvals_mhd.c bvals_shear.c cc_pos.c convert_var.c dump_binary.c dump_history.c dump_tab.c dump_vtk.c init_grid.c init_mesh.c main.c new_dt.c output.c output_pdf.c output_pgm.c output_ppm.c output_tab.c output_vtk.c par.c problem.c restart.c show_config.c smr.c utils.c gravity/bvals_grav.c gravity/selfg.c gravity/selfg_fft.c gravity/selfg_fft_obc.c gravity/selfg_fft_disk.c gravity/selfg_multigrid.c integrators/integrate.c integrators/integrate_1d_ctu.c integrators/integrate_2d_ctu.c integrators/integrate_3d_ctu.c integrators/integrate_1d_vl.c integrators/integrate_2d_vl.c integrators/integrate_3d_vl.c integrators/integrate_1d_vl_sr.c integrators/integrate_2d_vl_sr.c integrators/integrate_3d_vl_sr.c microphysics/conduction.c microphysics/cool.c microphysics/integrate_diffusion.c microphysics/get_eta.c microphysics/new_dt_diff.c microphysics/resistivity.c microphysics/viscosity.c particles/dump_particle_history.c particles/exchange.c particles/init_particle.c particles/integrators_particle.c particles/output_particle.c particles/bvals_particle.c particles/utils_particle.c reconstruction/esystem_prim.c reconstruction/lr_states_dc.c reconstruction/lr_states_plm.c reconstruction/lr_states_ppm.c reconstruction/lr_states_prim2.c reconstruction/lr_states_prim3.c rsolvers/esystem_roe.c rsolvers/exact.c rsolvers/exact_sr.c rsolvers/force.c rsolvers/hllc.c rsolvers/hlld.c rsolvers/hlle_sr.c rsolvers/hllc_sr.c rsolvers/hlld_sr.c rsolvers/hlle.c rsolvers/roe.c rsolvers/two_shock.c > Makedepend
+gcc -O3    -c ath_array.c
+gcc -O3    -c ath_files.c
+gcc -O3    -c ath_log.c
+gcc -O3    -c ath_signal.c
+gcc -O3    -c baton.c
+gcc -O3    -c bvals_mhd.c
+gcc -O3    -c bvals_shear.c
+gcc -O3    -c cc_pos.c
+gcc -O3    -c convert_var.c
+gcc -O3    -c dump_binary.c
+gcc -O3    -c dump_history.c
+gcc -O3    -c dump_tab.c
+gcc -O3    -c dump_vtk.c
+gcc -O3    -c init_grid.c
+gcc -O3    -c init_mesh.c
+gcc -O3    -c main.c
+gcc -O3    -c new_dt.c
+gcc -O3    -c output.c
+gcc -O3    -c output_pdf.c
+gcc -O3    -c output_pgm.c
+gcc -O3    -c output_ppm.c
+gcc -O3    -c output_tab.c
+gcc -O3    -c output_vtk.c
+gcc -O3    -c par.c
+gcc -O3    -c problem.c
+gcc -O3    -c restart.c
+gcc -O3    -c show_config.c
+gcc -O3    -c smr.c
+gcc -O3    -c utils.c
+gcc -O3 -o ../bin/athena ath_array.o ath_files.o ath_log.o ath_signal.o baton.o bvals_mhd.o bvals_shear.o cc_pos.o convert_var.o dump_binary.o dump_history.o dump_tab.o dump_vtk.o init_grid.o init_mesh.o main.o new_dt.o output.o output_pdf.o output_pgm.o output_ppm.o output_tab.o output_vtk.o par.o problem.o restart.o show_config.o smr.o utils.o  gravity/bvals_grav.o gravity/selfg.o gravity/selfg_fft.o gravity/selfg_fft_obc.o gravity/selfg_fft_disk.o gravity/selfg_multigrid.o integrators/integrate.o integrators/integrate_1d_ctu.o integrators/integrate_2d_ctu.o integrators/integrate_3d_ctu.o integrators/integrate_1d_vl.o integrators/integrate_2d_vl.o integrators/integrate_3d_vl.o integrators/integrate_1d_vl_sr.o integrators/integrate_2d_vl_sr.o integrators/integrate_3d_vl_sr.o microphysics/conduction.o microphysics/cool.o microphysics/integrate_diffusion.o microphysics/get_eta.o microphysics/new_dt_diff.o microphysics/resistivity.o microphysics/viscosity.o particles/dump_particle_history.o particles/exchange.o particles/init_particle.o particles/integrators_particle.o particles/output_particle.o particles/bvals_particle.o particles/utils_particle.o reconstruction/esystem_prim.o reconstruction/lr_states_dc.o reconstruction/lr_states_plm.o reconstruction/lr_states_ppm.o reconstruction/lr_states_prim2.o reconstruction/lr_states_prim3.o rsolvers/esystem_roe.o rsolvers/exact.o rsolvers/exact_sr.o rsolvers/force.o rsolvers/hllc.o rsolvers/hlld.o rsolvers/hlle_sr.o rsolvers/hllc_sr.o rsolvers/hlld_sr.o rsolvers/hlle.o rsolvers/roe.o rsolvers/two_shock.o    -ldl -lm
+
+
+
+Starting 256,0.001
+Starting 256,0.01
+Starting 512,0.001
+Starting 512,0.01
+Starting 512,0.1
+Recompiling
+(cd src/fftsrc; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/gravity; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/integrators; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/microphysics; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/particles; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/reconstruction; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src/rsolvers; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o *.a Makedepend
+(cd src; /Applications/Xcode.app/Contents/Developer/usr/bin/make clean)
+rm -f *.o Makedepend ../bin/athena
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking whether gcc needs -traditional... no
+checking for strdup... yes
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating Makeoptions
+config.status: creating src/Makefile
+config.status: creating src/defs.h
+config.status: creating src/fftsrc/Makefile
+config.status: creating src/gravity/Makefile
+config.status: creating src/integrators/Makefile
+config.status: creating src/microphysics/Makefile
+config.status: creating src/reconstruction/Makefile
+config.status: creating src/rsolvers/Makefile
+config.status: creating src/particles/Makefile
+config.status: creating src/config.h
+config.status: src/config.h is unchanged
+
+Your Athena distribution has now been configured:
+
+--- Physics Options ---
+
+Problem:                 planet-disk
+Gas properties:          HYDRO
+Equation of State:       ISOTHERMAL
+Coordinate System:       CARTESIAN
+Advected scalar fields:  0
+Self-gravity:            OFF
+Resistivity:             OFF
+Viscosity:               OFF
+Thermal conduction:      OFF
+Particles:               OFF
+Special Relativity:      OFF
+
+--- Algorithm Options ----
+
+Spatial Order:           3 (THIRD_ORDER_CHAR)
+Flux:                    roe
+unsplit integrator:      ctu
+Precision:               DOUBLE_PREC
+Compiler options:        -O3
+Ghost cell output:       OFF
+Parallel modes: MPI      OFF
+H-correction:            OFF
+FFT:                     OFF
+Shearing-box:            ON
+FARGO:                   OFF
+Super timestepping:      OFF
+Static Mesh Refinement:  OFF
+first-order flux corr:   OFF
+ROTATING_FRAME:          OFF
+L1_INFLOW:               OFF
+DIR bin exists
+(cd src/gravity; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    bvals_grav.c selfg.c selfg_fft.c selfg_fft_disk.c selfg_fft_obc.c selfg_multigrid.c > Makedepend
+gcc -O3    -c bvals_grav.c
+gcc -O3    -c selfg.c
+gcc -O3    -c selfg_fft.c
+gcc -O3    -c selfg_fft_disk.c
+gcc -O3    -c selfg_fft_obc.c
+gcc -O3    -c selfg_multigrid.c
+(cd src/integrators; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    integrate.c integrate_1d_ctu.c integrate_2d_ctu.c integrate_3d_ctu.c integrate_1d_vl.c integrate_2d_vl.c integrate_3d_vl.c integrate_1d_vl_sr.c integrate_2d_vl_sr.c integrate_3d_vl_sr.c > Makedepend
+gcc -O3    -c integrate.c
+gcc -O3    -c integrate_1d_ctu.c
+gcc -O3    -c integrate_2d_ctu.c
+gcc -O3    -c integrate_3d_ctu.c
+gcc -O3    -c integrate_1d_vl.c
+gcc -O3    -c integrate_2d_vl.c
+gcc -O3    -c integrate_3d_vl.c
+gcc -O3    -c integrate_1d_vl_sr.c
+gcc -O3    -c integrate_2d_vl_sr.c
+gcc -O3    -c integrate_3d_vl_sr.c
+(cd src/microphysics; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    conduction.c cool.c integrate_diffusion.c get_eta.c new_dt_diff.c resistivity.c viscosity.c > Makedepend
+gcc -O3    -c conduction.c
+gcc -O3    -c cool.c
+gcc -O3    -c integrate_diffusion.c
+gcc -O3    -c get_eta.c
+gcc -O3    -c new_dt_diff.c
+gcc -O3    -c resistivity.c
+gcc -O3    -c viscosity.c
+(cd src/particles; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    bvals_particle.c dump_particle_history.c exchange.c init_particle.c integrators_particle.c output_particle.c utils_particle.c > Makedepend
+gcc -O3    -c bvals_particle.c
+gcc -O3    -c dump_particle_history.c
+gcc -O3    -c exchange.c
+gcc -O3    -c init_particle.c
+gcc -O3    -c integrators_particle.c
+gcc -O3    -c output_particle.c
+gcc -O3    -c utils_particle.c
+(cd src/reconstruction; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    esystem_prim.c lr_states_dc.c lr_states_plm.c lr_states_ppm.c lr_states_prim2.c lr_states_prim3.c > Makedepend
+gcc -O3    -c esystem_prim.c
+gcc -O3    -c lr_states_dc.c
+gcc -O3    -c lr_states_plm.c
+gcc -O3    -c lr_states_ppm.c
+gcc -O3    -c lr_states_prim2.c
+gcc -O3    -c lr_states_prim3.c
+(cd src/rsolvers; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    esystem_roe.c exact.c exact_sr.c force.c hllc.c hlld.c hllc_sr.c hlle_sr.c hlld_sr.c hlle.c roe.c two_shock.c > Makedepend
+gcc -O3    -c esystem_roe.c
+gcc -O3    -c exact.c
+gcc -O3    -c exact_sr.c
+gcc -O3    -c force.c
+gcc -O3    -c hllc.c
+gcc -O3    -c hlld.c
+gcc -O3    -c hllc_sr.c
+gcc -O3    -c hlle_sr.c
+gcc -O3    -c hlld_sr.c
+gcc -O3    -c hlle.c
+gcc -O3    -c roe.c
+gcc -O3    -c two_shock.c
+(cd src; /Applications/Xcode.app/Contents/Developer/usr/bin/make compile)
+gcc -MM -O3    ath_array.c ath_files.c ath_log.c ath_signal.c baton.c bvals_mhd.c bvals_shear.c cc_pos.c convert_var.c dump_binary.c dump_history.c dump_tab.c dump_vtk.c init_grid.c init_mesh.c main.c new_dt.c output.c output_pdf.c output_pgm.c output_ppm.c output_tab.c output_vtk.c par.c problem.c restart.c show_config.c smr.c utils.c gravity/bvals_grav.c gravity/selfg.c gravity/selfg_fft.c gravity/selfg_fft_obc.c gravity/selfg_fft_disk.c gravity/selfg_multigrid.c integrators/integrate.c integrators/integrate_1d_ctu.c integrators/integrate_2d_ctu.c integrators/integrate_3d_ctu.c integrators/integrate_1d_vl.c integrators/integrate_2d_vl.c integrators/integrate_3d_vl.c integrators/integrate_1d_vl_sr.c integrators/integrate_2d_vl_sr.c integrators/integrate_3d_vl_sr.c microphysics/conduction.c microphysics/cool.c microphysics/integrate_diffusion.c microphysics/get_eta.c microphysics/new_dt_diff.c microphysics/resistivity.c microphysics/viscosity.c particles/dump_particle_history.c particles/exchange.c particles/init_particle.c particles/integrators_particle.c particles/output_particle.c particles/bvals_particle.c particles/utils_particle.c reconstruction/esystem_prim.c reconstruction/lr_states_dc.c reconstruction/lr_states_plm.c reconstruction/lr_states_ppm.c reconstruction/lr_states_prim2.c reconstruction/lr_states_prim3.c rsolvers/esystem_roe.c rsolvers/exact.c rsolvers/exact_sr.c rsolvers/force.c rsolvers/hllc.c rsolvers/hlld.c rsolvers/hlle_sr.c rsolvers/hllc_sr.c rsolvers/hlld_sr.c rsolvers/hlle.c rsolvers/roe.c rsolvers/two_shock.c > Makedepend
+gcc -O3    -c ath_array.c
+gcc -O3    -c ath_files.c
+gcc -O3    -c ath_log.c
+gcc -O3    -c ath_signal.c
+gcc -O3    -c baton.c
+gcc -O3    -c bvals_mhd.c
+gcc -O3    -c bvals_shear.c
+gcc -O3    -c cc_pos.c
+gcc -O3    -c convert_var.c
+gcc -O3    -c dump_binary.c
+gcc -O3    -c dump_history.c
+gcc -O3    -c dump_tab.c
+gcc -O3    -c dump_vtk.c
+gcc -O3    -c init_grid.c
+gcc -O3    -c init_mesh.c
+gcc -O3    -c main.c
+gcc -O3    -c new_dt.c
+gcc -O3    -c output.c
+gcc -O3    -c output_pdf.c
+gcc -O3    -c output_pgm.c
+gcc -O3    -c output_ppm.c
+gcc -O3    -c output_tab.c
+gcc -O3    -c output_vtk.c
+gcc -O3    -c par.c
+gcc -O3    -c problem.c
+gcc -O3    -c restart.c
+gcc -O3    -c show_config.c
+gcc -O3    -c smr.c
+gcc -O3    -c utils.c
+gcc -O3 -o ../bin/athena ath_array.o ath_files.o ath_log.o ath_signal.o baton.o bvals_mhd.o bvals_shear.o cc_pos.o convert_var.o dump_binary.o dump_history.o dump_tab.o dump_vtk.o init_grid.o init_mesh.o main.o new_dt.o output.o output_pdf.o output_pgm.o output_ppm.o output_tab.o output_vtk.o par.o problem.o restart.o show_config.o smr.o utils.o  gravity/bvals_grav.o gravity/selfg.o gravity/selfg_fft.o gravity/selfg_fft_obc.o gravity/selfg_fft_disk.o gravity/selfg_multigrid.o integrators/integrate.o integrators/integrate_1d_ctu.o integrators/integrate_2d_ctu.o integrators/integrate_3d_ctu.o integrators/integrate_1d_vl.o integrators/integrate_2d_vl.o integrators/integrate_3d_vl.o integrators/integrate_1d_vl_sr.o integrators/integrate_2d_vl_sr.o integrators/integrate_3d_vl_sr.o microphysics/conduction.o microphysics/cool.o microphysics/integrate_diffusion.o microphysics/get_eta.o microphysics/new_dt_diff.o microphysics/resistivity.o microphysics/viscosity.o particles/dump_particle_history.o particles/exchange.o particles/init_particle.o particles/integrators_particle.o particles/output_particle.o particles/bvals_particle.o particles/utils_particle.o reconstruction/esystem_prim.o reconstruction/lr_states_dc.o reconstruction/lr_states_plm.o reconstruction/lr_states_ppm.o reconstruction/lr_states_prim2.o reconstruction/lr_states_prim3.o rsolvers/esystem_roe.o rsolvers/exact.o rsolvers/exact_sr.o rsolvers/force.o rsolvers/hllc.o rsolvers/hlld.o rsolvers/hlle_sr.o rsolvers/hllc_sr.o rsolvers/hlld_sr.o rsolvers/hlle.o rsolvers/roe.o rsolvers/two_shock.o    -ldl -lm
+
+
+
+Starting 512,0.0
+Total time: -1389228100 seconds
